@@ -1,0 +1,4 @@
+java_library(
+    name = "utilsLibrary" , 
+    srcs = ["com/example/lib/Greetings.java"]
+)

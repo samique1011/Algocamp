@@ -1,6 +1,8 @@
 spring:
   application:
     name: TodoApp
+  profiles:
+    active: ${environment}
 
 server:
   port: ${spring_server_port}

@@ -13,11 +13,22 @@ import lombok.AllArgsConstructor;
 public class DemoApplicationService {
     public iDemoApplicationType de;
 
-    public DemoApplicationService(@Qualifier("Type-2") iDemoApplicationType de){
+    public DemoApplicationService(iDemoApplicationType de){
         this.de = de;
     }
 
     public List<Todo> getTodos(){
         return de.getTodos();
+    }
+
+    public String addTodo(int id , String desc){
+        return de.addTodo(id, desc);
+    }
+
+    public String updateTodo(int id , String desc){
+        return de.updateTodo(id , desc);
+    }
+    public String deleteTodo(int id){
+        return de.deleteTodo(id);
     }
 }

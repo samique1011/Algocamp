@@ -1,0 +1,19 @@
+spring:
+    application:
+        name: FakeCommerce
+    datasource:
+        url : ${database_url}
+        username: ${username}
+        password : ${password}
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+    jackson:
+        deserialization:
+            fail-on-unknown-properties: true
+
+
+server:
+    port: ${server_port_number}

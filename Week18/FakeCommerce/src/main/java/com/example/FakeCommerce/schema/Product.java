@@ -1,12 +1,12 @@
 package com.example.FakeCommerce.schema;
 
-import jakarta.annotation.Generated;
+
+import org.hibernate.annotations.DialectOverride.SQLDelete;
+import org.hibernate.annotations.DialectOverride.SQLRestriction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -25,6 +25,8 @@ import lombok.Setter;
 @Table(name = "products")
 @Getter 
 @Setter 
+@org.hibernate.annotations.SQLDelete (sql = "UPDATE products SET deleted_at = CURRENT_TIMESTAMP where id = ?")
+@org.hibernate.annotations.SQLRestriction ("deleted_at is NULL")
 public class Product extends BaseEntity {
     @Column(nullable = false)
     private String name;

@@ -1,9 +1,6 @@
 package com.example.FakeCommerce.controllers;
 
 import java.util.List;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.FakeCommerce.dtos.CreateProductRequestDto;

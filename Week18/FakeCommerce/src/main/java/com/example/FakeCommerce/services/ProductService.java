@@ -10,8 +10,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.FakeCommerce.dtos.CreateProductRequestDto;
 import com.example.FakeCommerce.dtos.GetFullProductDetailsReponseDTO;
 import com.example.FakeCommerce.dtos.GetProductResponseDTO;
+import com.example.FakeCommerce.repositories.CategoryRepository;
 import com.example.FakeCommerce.repositories.ProductRepository;
-import com.example.FakeCommerce.schema.BaseEntity;
 import com.example.FakeCommerce.schema.Category;
 import com.example.FakeCommerce.schema.Product;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor 
 public class ProductService {
     private final ProductRepository productRepository;
-    private final CategoryServices categoryServices;
+    private final CategoryRepository categoryRepository;
 
     public List<GetProductResponseDTO> getAllProducts(){
         List <Product> allProducts = productRepository.findAll();
@@ -96,7 +96,8 @@ public class ProductService {
 
     public String saveProduct(CreateProductRequestDto p){
         try{
-            Category c = categoryServices.getCategoryById(p.getCategoryId());
+
+            Category c = categoryRepository.findById(p.getCategoryId()).orElseThrow(() -> new RuntimeException("Such cateogry doesnt exists"));
             Product newProduct = Product.builder().name(p.getName())
             .description(p.getDescription()).image(p.getImage())
             .category(c)

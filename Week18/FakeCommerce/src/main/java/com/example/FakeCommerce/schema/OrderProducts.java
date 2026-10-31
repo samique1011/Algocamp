@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity 
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor 
 @NoArgsConstructor 
 @Builder 
+@Getter
 public class OrderProducts extends BaseEntity{
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "product_id" , nullable = false)

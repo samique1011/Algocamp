@@ -8,12 +8,12 @@ import com.example.FakeCommerce.schema.Category;
 import com.example.FakeCommerce.services.CategoryServices;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,8 +32,13 @@ public class CategoryController {
     }
 
     @PostMapping("")
-    public String postMethodName(@RequestBody CreateCategoryDTO createCategoryDTO) {
-        return categoryServices.addCategory(createCategoryDTO);
+    public ResponseEntity<?> postMethodName(@RequestBody CreateCategoryDTO createCategoryDTO) {
+        try{
+            String res = categoryServices.addCategory(createCategoryDTO);
+            return ResponseEntity.ok(res);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }
     }
     
     

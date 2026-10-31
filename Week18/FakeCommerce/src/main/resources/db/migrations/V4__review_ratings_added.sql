@@ -1,0 +1,2 @@
+ALTER TABLE reviews
+ADD COLUMN ratings DECIMAL(38, 2) NOT NULL;
